@@ -1,0 +1,32 @@
+version: '3.1'
+
+services:
+
+  lgrafana:
+    image: grafana/grafana
+    container_name: local_grafana
+    ports:
+      - "3000:30000"  
+    depends_on:
+      - lprometheus
+    networks:
+      - atul-net
+
+  lprometheus:
+    image: prom/prometheus
+    container_name: local_prometheus
+    ports:
+      - "9090:9090"
+      
+    networks:
+      - atul-net
+      
+
+
+networks:
+  atul-net:
+    external: true
+
+
+
+
